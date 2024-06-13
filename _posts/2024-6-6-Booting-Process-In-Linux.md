@@ -14,5 +14,5 @@ It consists of everything that happens from when the computer power is switched 
 - Inital RAM disks
 - initramfs
 - /sbin/init
-- Command Shell using Getty
+- Command Shell
 - Graphical User Interface
