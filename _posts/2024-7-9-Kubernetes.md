@@ -9,3 +9,5 @@ Most container orchestrators can:
     ▪ Manage and optimize resource usage.
     ▪ Allow for implementation of policies to secure access to applications running inside containers.
 With all these configurable yet flexible features, container orchestrators are an obvious choice when it comes to managing containerized applications at scale. In this course, we will explore Kubernetes, one of the most in-demand container orchestration tools available today.
+
+Kubernetes offers a very rich set of features for container orchestration. Some of its fully supported features are:
