@@ -11,3 +11,5 @@ Most container orchestrators can:
 With all these configurable yet flexible features, container orchestrators are an obvious choice when it comes to managing containerized applications at scale. In this course, we will explore Kubernetes, one of the most in-demand container orchestration tools available today.
 
 Kubernetes offers a very rich set of features for container orchestration. Some of its fully supported features are:
+Automatic bin packing
+Kubernetes automatically schedules containers based on resource needs and constraints, to maximize utilization without sacrificing availability.
