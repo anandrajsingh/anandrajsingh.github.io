@@ -12,7 +12,7 @@ Displays the status of local kubernetes cluster that is running using Kubernetes
 **minikube delete**
 Deletes the local kubernetes cluster that is running using Minikube
 
-**minikube delete**
+**minikube ip**
 Displays the IP address of Minikube virtual machine
 
 **minikube ssh**
