@@ -34,6 +34,7 @@ Provides detailed information about a specific Kubernetes resource, including it
 
 **kubectl get `<resource>`**   	    
 Retrieves information about Kubernetes resources, such as Pods, Deployments and Services
+e.g. kubectl get pods -o wide   Gives detailed information about all the pods in your kubernetes cluster.
 
 **kubectl describe `<resource> <resource-name>`**   
 Provides detailed information about a specific kubernetes resource or a set of kubernetes 

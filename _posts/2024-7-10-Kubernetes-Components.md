@@ -41,3 +41,7 @@ The kubelet is an agent running on each node, control plane and workers, and i
 The kubelet connects to container runtimes through a plugin based interface - the Container Runtime Interface (CRI). The CRI consists of protocol buffers, gRPC API, libraries, and additional specifications and tools. In order to connect to interchangeable container runtimes, kubelet uses a CRI shim, an application which provides a clear abstraction layer between kubelet and the container runtime.
 
 The CRI implements two services: ImageService and RuntimeService. The ImageService is responsible for all the image-related operations, while the RuntimeService is responsible for all the Pod and container-related operations.
+
+
+**Proxy kube-proxy**
+It is the network agent which runs on each node, control plane and workers, responsible for dynamic updates and maintenance of all networking rules of the node. It abstracts the details of Pods networking and forwards connection requests to the containers in the Pods.
