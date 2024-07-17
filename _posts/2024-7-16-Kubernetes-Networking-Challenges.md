@@ -1,4 +1,4 @@
-**Networking Challanges**
+**Networking Challenges**
 Decoupled microservices based applications rely heavily on networking in order to mimic the tight-coupling once available in the monolithic era. Networking in general, is not the easiest to understand and implement. Kubernetes is no exception - as a containerized microservices orchestrator it needs to address a few distinct networking challenges.
 
 - Container-to-Container communication inside Pods.

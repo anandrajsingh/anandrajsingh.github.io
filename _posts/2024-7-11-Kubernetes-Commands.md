@@ -18,9 +18,15 @@ Displays the IP address of Minikube virtual machine
 **minikube ssh**
 Logs in to the Minikube virtual machine using SSH
 
+**minikube addons `<input>`**
+List or enable and disable addons
+**e.g.** minikube addons list       List the addons
+**e.g.** minikube addons enable dashboard       Enable dashboard addon
+
 
 
 <p style="font-size: 20px;"><b>Some kubectl Commands</b></p>
+<b>kubectl</b> is the Kubernetes Command Line Interface client to manage cluster resources and applications. It is very flexible and easy to integrate with other systems, therefore it can be used standalone, or part of script automation tools. Once all required credentials and cluster access points have been configured for <b>kubectl</b>, it can be used remotely from anywhere to access a cluster.
 
 **kubectl version**   
 Displays the version of kubectl and Kubernetes clustor components
@@ -68,3 +74,7 @@ Used to forward one or more local port to a port on pod.
 To create a service that exposes a Kubernetes resource such as pod, deployement or replicaset, to make it accessible over the network.
 
 **e.g.** kubectl expose deployment my-deployment --port=80 --target-port=8080   --> This exposes a service that exposes the deployment `my-deployment` on port 80, forwarding traffic to port 8080 on the pods.
+
+**kubectl proxy**
+Allow to run a proxy server locally. This proxy can then be used to access your kubernetes cluster's API server. It locks the terminal for as long as the proxy is running, unless we are run it in background( with kubectl proxy &).
+
