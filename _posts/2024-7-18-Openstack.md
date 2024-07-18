@@ -1,0 +1,1 @@
+Openstack is a cloud service which offers primarily IaaS to users. It is piece of software when installed on cluster of Physical Servers, offers the users to create, run and manage Virtual Machines(VM) on top of it along with support to attach the connected storage along with the networking services in a virtual format known as Infrastructure as a Service.
