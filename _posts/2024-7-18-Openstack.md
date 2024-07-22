@@ -43,3 +43,7 @@ b) Layer 3 (IP and Routing)
 => DHCP Agent -> Controller
 c) Miscellaneous
 => Metadata Agents -> Controller
+
+
+**Keystone**
+API client authentication, service discovery, and distributed multi-tenant authorization by implementing Openstack's Identity API. It supports LDAP, OAuth, OpenID Connect, SAML and SQL. It is organized as a group of internal services exposed on one or many endpoints. For example, an authenticate call will validate user/ project credentials with the Identity service and upon success, create and return a token with the Token service.
