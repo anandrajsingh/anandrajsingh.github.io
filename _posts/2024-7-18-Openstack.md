@@ -22,3 +22,24 @@ Openstack Compute consists of the following areas and components:
 9. SQL database: Openstack Compute can support any database that SQLAlchemy supports 
 SQLite3 for Research and Development work
 MySQL, MariaDB & PostgreSQL for commercial setup
+
+
+**Neutron**
+Openstack Neutron is an SDN networking project focused on delivering network-as-a-service (Naas) in virtual compute environments.
+
+Openstack Networking enables projects to create advanced virtual network topologies which may include services such as firewall, and a Virtual Private Network. It also supports security groups to block or unblock, port ranges or traffic types for that VM.
+
+It requires Keystone for basic function.
+
+Components in Neutron Service:
+1. Neutron Server: Provides API, manages database etc.
+2. Plugins: Manages Agent.
+3. Agents: Provides Layer 2/3 connectivity to instances, Handles physical-virtual network transition, Handles metadata, etc.
+a) Layer 2 (Ethernet and Switching)
+=> Linux Bridge Agent
+=> OVS Agent -> Compute & Controller both
+b) Layer 3 (IP and Routing)
+=> L3 Agent -> Controller
+=> DHCP Agent -> Controller
+c) Miscellaneous
+=> Metadata Agents -> Controller
