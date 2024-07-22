@@ -47,3 +47,8 @@ c) Miscellaneous
 
 **Keystone**
 API client authentication, service discovery, and distributed multi-tenant authorization by implementing Openstack's Identity API. It supports LDAP, OAuth, OpenID Connect, SAML and SQL. It is organized as a group of internal services exposed on one or many endpoints. For example, an authenticate call will validate user/ project credentials with the Identity service and upon success, create and return a token with the Token service.
+
+**Glance**
+Glance image service include discovering, registering and retrieving virtual machine images. It has RESTful API that allows querying of VM image metadata as well as retrieval of actual image. VM image made available through Glance can be stored in a variety of locations from simple filesystems to object-storage systems like the OpenStack Swift Project.
+
+It requires Keystone for basic function.
