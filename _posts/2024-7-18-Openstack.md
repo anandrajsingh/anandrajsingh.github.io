@@ -52,3 +52,8 @@ API client authentication, service discovery, and distributed multi-tenant autho
 Glance image service include discovering, registering and retrieving virtual machine images. It has RESTful API that allows querying of VM image metadata as well as retrieval of actual image. VM image made available through Glance can be stored in a variety of locations from simple filesystems to object-storage systems like the OpenStack Swift Project.
 
 It requires Keystone for basic function.
+
+**Horizon**
+It is the canonical implementation of Openstack's dashboard, which is extensible and provides a web based user interface to Openstack services.
+
+It requires Keystone for basic function.
