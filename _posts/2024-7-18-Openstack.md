@@ -57,3 +57,21 @@ It requires Keystone for basic function.
 It is the canonical implementation of Openstack's dashboard, which is extensible and provides a web based user interface to Openstack services.
 
 It requires Keystone for basic function.
+
+**Swift**
+It is highly available, distributed, eventually consistent object/blob storage. Organizations can use Swift to store lots of data efficiently, safely and cheaply. It's built for scale and optimised for durability, availabilty and concurrency across entire data set. Swift is ideal for storing unstructured data that can grow without bound.
+
+It requires Keystone for basic function.
+
+**Cinder**
+Cinder is the Openstack Block Storage service for providing volume to Nova Virtual Machines, Ironic bare metal hosts, container and more.
+
+Some goals of Cinder are to have:
+1) Component based architecture: Quickly add new behaviours.
+2) Highly available: Scale to very serious workloads.
+3) Fault-Tolerant: Isolated processes avoid cascading failures.
+4) Recoverable: Failures should be easy to diagnose, debug and rectify.
+5) Open Standards: Be a reference implemetation for a community-driven api.
+
+It requires Keystone for basic functions.
+
