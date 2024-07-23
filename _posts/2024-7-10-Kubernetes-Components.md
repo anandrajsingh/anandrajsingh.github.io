@@ -24,6 +24,8 @@ The **cloud-controller-manager** runs controllers or operators responsible to 
 **Key-Value Data Store**
 etcd is an open source project under the Cloud Native Computing Foundation (CNCF). etcd is a strongly consistent, distributed key-value data store used to persist a Kubernetes cluster's state. New data is written to the data store only by appending to it, data is never replaced in the data store. Obsolete data is compacted (or shredded) periodically to minimize the size of the data store.
 
+etcd's CLI management tool -etcdctl, provides snapshot save and restore capabilities which come in handy especially for single etcd instance Kubernetes cluster - common in development and learning environments. However, in Stage and Production environments, it is extremely important to replicate the data stores in HA mode, for cluster configuration data resiliency.
+
 
 
 **Worker Node**
@@ -33,6 +35,9 @@ A worker node has the following components:
 - Container Runtime
 - Node Agent - kubelet
 - Proxy - kube-proxy
+
+**Container Runtime**
+Although Kubernetes is described as a "container orchestration engine", it lacks the capability to directly handle and run containers. In order to manage a container's lifecycle, Kubernetes requires a container runtime on node where a Pod and its containers are to be scheduled. A runtime is required on each node of a Kubernetes cluster, both control plane and worker. The recommendation is to run the Kubernetes control plane components as containers, hence the necessity of a runtime on the control plane nodes. 
 
 
 **Node Agent – kubelet**
