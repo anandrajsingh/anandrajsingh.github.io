@@ -75,3 +75,13 @@ Some goals of Cinder are to have:
 
 It requires Keystone for basic functions.
 
+**Manila**
+Manila provides coordinated access to shared or distributed file systems.
+It requires Keystone for basic function
+
+**Heat**
+Heat orchestrates the infrastructure resource for a cloud application based on templates in the form of text file that can be treated like code.
+Heat provides both and Openstack-native REST API and CloudFormation-compatible Query API.
+Heat also provides an autoscaling service that integrates with the Openstack Telemetry services, so you can include a scaling group as a resource in a template.
+
+It requires Keystone for basic function.
