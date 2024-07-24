@@ -125,3 +125,20 @@ spec:
         image: nginx:1.20.2
         ports:
         - containerPort: 80
+        
+
+**kubectl create deployment nginx-deployment \
+--image=nginx:1.20.2 --port=80 --replicas=3**
+
+A **rolling update** is triggered when we update specific properties of the Pod Template for deployment. While planned changes such as updating the container image, container port, volumes and mounts would trigger a new Revision, other operations that are dynamic in nature, like scaling or labelling the deployment, do not trigger the rolling update, thus do not change the Revision number.
+
+Once the rolling update has completed, the **Deployment** will show both **Replicasets A and B**, where A is scaled to zero pods and B is scaled to 3 pods. This is how the deployment records its prior state configuration settings, as **Revisions**.
+
+Some deployment commands:
+**kubectl rollout status deploy nginx-deployment**
+**kubectl rollout history deploy nginx-deployment**
+**kubectl rollout history deploy nginx-deployment --revision=1**
+**kubectl set image deploy nginx-deployment nginx=nginx:1.21.5 --record**
+**kubectl rollout undo deploy nginx-deployment  --to-revision=1**
+**kubectl get all -l app=nginx -o wide**
+**kubectl get deploy, rs, po -l app=nginx**
