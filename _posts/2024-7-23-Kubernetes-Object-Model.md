@@ -61,3 +61,40 @@ Controllers and Services, use label Selectors to select a subset of object. Kube
 allow filtering of objects based on Label Keys and Values. Matching is using =, == (equals, used interchangeably), or != (not equals) operators.
 - **Set-Based Selectors**
 allow filtering of object based on a set of values. We can use **in, notin** operators for values, and **exist/does not exist** operator for label keys.
+
+
+**ReplicationControllers**
+Although no longer a recommended controller, a Replicationcontroller is a complex operator that ensures a specified number of replicas of a Pods are running at any given time, by constantly comparing the desired state with actual state.
+
+However, the default recommended controller is the Deployement which configures a Replicaset controller to manage application Pod's lifecycle.
+
+
+**Replicaset**
+It is next generation of ReplicationController, as it implements the replication and self-healing aspects of the ReplicationController. Replicasets support both equality and set-based Selectors whereas ReplicationControllers only support equality-based Selectors.
+
+Below is an example of a Replicaset object's definition manifest in YAML format.
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend
+  labels:
+    app: guestbook
+    tier: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: guestbook
+  template:
+    metadata:
+      labels:
+        app: guestbook
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.22.1
+
+
+**kubectl scale rs frontend --replicas=4**
+
