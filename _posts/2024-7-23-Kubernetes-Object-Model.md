@@ -12,3 +12,15 @@ An object definition manifest must include other fields that specify the version
 
 Examples of Kubernetes object types are Nodes, Namespaces, Pods, Replicasets, Deployements, Daemonsets etc.
 
+**Namespaces**
+If multiple users and teams use the same Kubernetes cluster we can partition the cluster into virtual sub-clusters using Namespaces. The names of resources/objects created inside a Namespace are unique, but not across Namespaces in cluster.
+
+Generally, Kubernetes creates four Namespaces out of the box:
+
+- <b>kube-system</b>: contains the object and resources created by Kubernetes system, mostly the control plane agents.
+- <b>kube-public</b> which is unsecured and readable by anyone, used for special purposes such as exposing public (non-sensitive) information about cluster.
+- <b>kube-node-lease</b> which holds node lease objects used for node heartbeat data. Good practice, however, is to create additional namespaces, as desired, to virtualize the cluster and isolate users, developer teams, applications or tiers.
+
+    Command to create namespace: kubectl create namespace `<namespace name>`
+
+- <b>default</b> contains the object and resources created by administrators and developers, and objects are assigned to it by default unless another namespace name is provided by the user.
