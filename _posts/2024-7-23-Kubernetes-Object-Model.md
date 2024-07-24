@@ -49,3 +49,15 @@ Gives detailed info about pods.
 - **kubectl run nginx-pod --image=nginx:1.22.1 --port=80 \
 --dry-run=client -o yaml > nginx.yaml**
 Generates a definition manifest in YAML. It is a multiline command
+
+
+**Labels**
+Labels are key-value pairs attached to Kubernetes objects such as Pods, Replicasets, Nodes, Namespaces, and Persistent Volumes. Labels are used to organize and select a subset of objects, based on the requirements in place.
+
+**Label Selectors**
+Controllers and Services, use label Selectors to select a subset of object. Kubernetes supports two types of Selectors:
+
+- **Equality-Based Selectors**
+allow filtering of objects based on Label Keys and Values. Matching is using =, == (equals, used interchangeably), or != (not equals) operators.
+- **Set-Based Selectors**
+allow filtering of object based on a set of values. We can use **in, notin** operators for values, and **exist/does not exist** operator for label keys.
