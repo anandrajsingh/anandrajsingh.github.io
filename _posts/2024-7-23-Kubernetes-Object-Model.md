@@ -24,3 +24,28 @@ Generally, Kubernetes creates four Namespaces out of the box:
     Command to create namespace: kubectl create namespace `<namespace name>`
 
 - <b>default</b> contains the object and resources created by administrators and developers, and objects are assigned to it by default unless another namespace name is provided by the user.
+
+
+**Pods**
+A Pod is the smallest Kubernetes workload object. It is the unit of deployment in Kubernetes, which represents a single instance of the application. A Pod is a logical collection of one or more containers, enclosing and isolating them to ensure that they:
+
+- Are scheduled togethor on the same host with the Pod.
+- Shere the same network namespace, meaning that they share a single IP address originally assigned to the Pod.
+- Have access to mount the same external storage (volumes) and other common dependencies.
+
+Pods are ephemeral in nature, and they do not have the capabilty to self-heal themselves. That is the reason they are used with controllers, or operators(used interchangeably), which handle Pod's replication, fault tolerance, self-healing, etc. Examples of Controllers are Deployments, Replicasets, Daemonsets, Jobs etc.
+
+**COMMANDS**
+
+- **kubectl create -f `<yaml file name>`**
+    Creates resouce defined in yaml file
+
+- **kubectl get pods -o wide**
+Gives detailed info about pods.
+
+- **kubectl run nginx-pod --image=nginx:1.22.1 --port=80**
+    Imperatively, we can simply run pod like above command
+
+- **kubectl run nginx-pod --image=nginx:1.22.1 --port=80 \
+--dry-run=client -o yaml > nginx.yaml**
+Generates a definition manifest in YAML. It is a multiline command
