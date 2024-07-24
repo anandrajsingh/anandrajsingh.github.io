@@ -98,3 +98,30 @@ spec:
 
 **kubectl scale rs frontend --replicas=4**
 
+
+**Deployments**
+Deployment objects provide declarative updates to Pods and Replicasets. The DeploymentController is part of the control plane node's controller manager, and as a controller it also ensures that current state always matches the desired state of our running containerized application. It allows for seamless application updates and rollbacks, known as the default **RollingUpdate** strategy, through **rollouts** and **rollbacks**, and it directly manages its Replicasets for application scaling, It also supports a disruptive, less popular strategy known as **Recreate**.
+
+Below is an example of a Deployment Object's definition manifest in YAML format:
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-deployment
+  template:
+    metadata:
+      labels:
+        app: nginx-deployment
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.20.2
+        ports:
+        - containerPort: 80
