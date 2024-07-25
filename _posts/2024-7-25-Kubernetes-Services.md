@@ -71,3 +71,108 @@ This is most common and highly recommended solution. For example, in the previou
 If we had a client application accessing the frontend application, the client would only need to "know" the frontend application's Service name and port, which are frontend-svc and port 80 respectively. From a client application Pod we could possibly run the following, allowing for the cluster internal name resolution and the kube-proxy to guide the client's request to a frontend Pod:
 
 **kubectl exec client client-app-pod-name -c client-container-name -- /bin/bash -c curl -s frontend-svc:80**
+
+**ServiceType**
+Access scope is defined by ServiceType property, defined when creating the Service.
+
+**ClusterIP**
+It is the default ServiceType. A Service recieves Virtual IP address, known as its ClusterIp. This Virtual IP address is used for communicating with the Service and is accessible only from within the cluster.
+
+`apiVersion: v1`
+`kind: Service`
+`metadata:`
+`  name: frontend-svc`
+`spec:`
+`  selector:`
+`    app: frontend`
+`  ports:`
+`  - protocol: TCP`
+`    port: 80`
+`    targetPort: 5`
+`  type: ClusterIP`
+
+
+**NodePort**
+With the NodePort ServiceType, in addition to a ClusterIP, a high-port, dynamically picked from the default range **30000-32767**, is mapped to the respective Service, from all the worker nodes. For example, if mapped NodePort is **32233** for the service **frontend-svc**, then, if we connect to any worker node on port **32233**, the node will redirect all the traffic to assigned ClusterIP - **172.17.0.4**. If we prefer a specific high-port number instead, then we can assign that high-port number to the NodePort from the default range when creating the Service.
+
+The Nodeport ServiceType is useful we want to make our Services accessible from external world. The end-user connects to any worker node on specified high-port, which proxies the request internally to the ClusterIp of the Service, then the request is forwarded to the applications running inside cluster. Let's not forget that the Service is load balancing such requests, and only forwards the request to one of the Pods running the desired application. To manage access to multiple application Services from external world, adminitrators can configure a reverse-proxy - an ingress, and define rules rules that target specific services within the cluster.
+
+`apiVersion: v1`
+`kind: Service`
+`metadata:`
+`  name: frontend-svc`
+`spec:`
+`  selector:`
+`    app: frontend`
+`  ports:`
+`  - protocol: TCP`
+`    port: 80`
+`    targetPort: 5000`
+`    nodePort: 32233`
+`  type: NodePort`
+
+
+**kubectl expose deploy frontend --name=frontend-svc \
+--port=80 --target-port=5000 --type=NodePort**
+
+**kubectl create service nodeport frontend-svc \
+--tcp=80:5000 --node-port=32233**
+
+
+
+**LoadBalancer**
+With the LoadBalancer ServiceType:
+
+- NodePort and ClusterIp are automatically created, and external load balancer will route to them.
+- The Service is exposed at a static port on each worker node.
+- The Service is exposed externally using the underlying cloud provider's load balancer feature.
+
+The LoadBalancer ServiceType will only work if the underlying infrastructure supports the automatic creation of Load Balancers and have the respective support in Kubernetes, as is the case with the Google Cloud Platform and AWS. If no such feature is configured, the LoadBalancer field is not populated, it remains in Pending state, but the Service will still work as a typical NodePort type Service.
+
+
+**ExternalIP**
+A Service can be mapped to an ExternalIP address if it can route to one or more of the worker nodes. Traffic that is ingressed into the cluster with the ExternalIP (as destination IP) on the Service port, gets routed to one of the Service endpoints. This type of service requires an external cloud provider such as Google Cloud Platform or AWS and a Load Balancer configured on the cloud provider's infrastructure.
+
+ExternalIPs are not managed by Kubernetes. The cluster administrator has to configure the routing which maps the ExternalIP address to one of the nodes.
+
+**ExternalName**
+It is a special ServiceType that has no Selectors and does not define any endpoints. When accessed within the cluster, it returns a CNAME record of externally configured Service.
+
+The primary use case of this ServiceType is to make externally configured Services like my-database.example.com available to applications inside the cluster. If the externally defined Service resides within the same Namespace, using just the name my-database would make it available to other applications and Services within that same Namespace.
+
+
+**Multi-Port Services**
+A service report can expose multiple ports at the same time if required. Its configuration is flexible enough to allow for multiple grouping of ports to be defined in the manifest. This is a helpful feature when exposing Pods with one container listening on more than one port, or when exposing Pods with multiple containers listening on one or more ports.
+
+A multi-port Service manifest is provided below:
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  selector:
+    app: myapp
+  type: NodePort
+  ports:
+  - name: http
+    protocol: TCP
+    port: 8080
+    targetPort: 80
+    nodePort: 31080
+  - name: https
+    protocol: TCP
+    port: 8443
+    targetPort: 443
+    nodePort: 31443
+
+
+
+**Port-Forwarding**
+In Kubernetes, the port forwarding feature allows users to easily forward a local port to an application port. The application port can be a Pod container port, a Service port, and even a Deployment container port (from its Pod template)
+
+**kubectl port-forward deploy/frontend 8080:5000**
+
+**kubectl port-forward frontend-77cbdf6f79-qsdts 8080:5000**
+
+**kubectl port-forward svc/frontend-svc 8080:80**
