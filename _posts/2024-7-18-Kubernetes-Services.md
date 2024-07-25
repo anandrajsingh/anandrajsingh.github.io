@@ -1,1 +1,0 @@
-Kubernetes provides a higher-level abstraction called <b>Service</b>, which logically groups Pods and defines a policy to access them. This grouping is achieved via <b>Labels</b> and <b>Selectors</b>. Labels and Selectors use a <b>key-value</b> pair format.
