@@ -26,6 +26,13 @@ Generally, Kubernetes creates four Namespaces out of the box:
 - <b>default</b> contains the object and resources created by administrators and developers, and objects are assigned to it by default unless another namespace name is provided by the user.
 
 
+namespaces can be added in metadata section of yaml file, and imperative command to apply namespace is
+
+- kubectl apply -f pod.yml --namespace=test
+
+To switch your active namespace to test run command **kubens test**
+
+
 **Pods**
 A Pod is the smallest Kubernetes workload object. It is the unit of deployment in Kubernetes, which represents a single instance of the application. A Pod is a logical collection of one or more containers, enclosing and isolating them to ensure that they:
 
@@ -142,3 +149,10 @@ Some deployment commands:
 **kubectl rollout undo deploy nginx-deployment  --to-revision=1**
 **kubectl get all -l app=nginx -o wide**
 **kubectl get deploy, rs, po -l app=nginx**
+
+
+
+
+**DAEMONSETS**
+Daemonsets are operators designed to manage node agents. They resemble ReplicaSet and Deployment operators when managing multiple pod replicas and application updates, but the DaemonSets present a distinct feature that enforces a single Pod replica to be placed per Node, on all the Nodes or on a select subset of Nodes. In contrast, the ReplicaSet and Deployment operators by default have no control over the scheduling and placement of multiple Pod replicas on the same Node.
+
