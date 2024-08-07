@@ -13,23 +13,23 @@ Keystone is the identity service used by OpenStack for authentication and high-l
 
 
 **Keystone Architecture**
-**Identity Backend**: The identity backend stores user credentials and other identity-related data. It can be configured to use various backends, such as SQL databases or LDAP.
+- **Identity Backend**: The identity backend stores user credentials and other identity-related data. It can be configured to use various backends, such as SQL databases or LDAP.
 
-**Assignment Backend**: This backend manages the association of users, roles, and projects. It determines what actions users are authorized to perform.
+- **Assignment Backend**: This backend manages the association of users, roles, and projects. It determines what actions users are authorized to perform.
 
-**Token Backend**: This backend handles the creation, storage, and revocation of tokens. Keystone can be configured to use different token formats, such as UUID or Fernet.
+- **Token Backend**: This backend handles the creation, storage, and revocation of tokens. Keystone can be configured to use different token formats, such as UUID or Fernet.
 
-**Catalog Backend**: This backend stores the service catalog, detailing the available services and their endpoints.
+- **Catalog Backend**: This backend stores the service catalog, detailing the available services and their endpoints.
 
 
 **Keystone Components**
-**keystone-api**: The API server that handles requests from clients.
-**keystone-all**: A single process that runs both the API server and the administrative interface (for smaller deployments).
+- **keystone-api**: The API server that handles requests from clients.
+- **keystone-all**: A single process that runs both the API server and the administrative interface (for smaller deployments).
 
 
 **Common Use Cases**
-**User Management**: Creating, updating, and deleting users, along with managing their roles and permissions.
+- **User Management**: Creating, updating, and deleting users, along with managing their roles and permissions.
 
-**Service Discovery**: Finding available services and their endpoints within the OpenStack cloud.
+- **Service Discovery**: Finding available services and their endpoints within the OpenStack cloud.
 
-**Project Management**: Creating and managing projects (tenants), associating users with projects, and defining roles within projects.
+- **Project Management**: Creating and managing projects (tenants), associating users with projects, and defining roles within projects.
