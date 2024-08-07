@@ -18,10 +18,14 @@ Displays the IP address of Minikube virtual machine
 **minikube ssh**
 Logs in to the Minikube virtual machine using SSH
 
+**minikube dashboard**
+**minikube dashboard --url**
+
 **minikube addons `<input>`**
 List or enable and disable addons
 **e.g.** minikube addons list       List the addons
 **e.g.** minikube addons enable dashboard       Enable dashboard addon
+**e.g.** minikube addons enable metrics-server
 
 
 
@@ -30,6 +34,9 @@ List or enable and disable addons
 
 **kubectl version**   
 Displays the version of kubectl and Kubernetes clustor components
+
+**kubectl proxy**
+kubectl authenticates with the API server on the control plane node and makes services available on the default proxy port 8001.
 
 **kubectl api-version**
 List all the API version supported by cluster.
