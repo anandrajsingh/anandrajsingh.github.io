@@ -26,10 +26,18 @@ etcd is an open source project under the Cloud Native Computing Foundation (C
 
 etcd's CLI management tool -etcdctl, provides snapshot save and restore capabilities which come in handy especially for single etcd instance Kubernetes cluster - common in development and learning environments. However, in Stage and Production environments, it is extremely important to replicate the data stores in HA mode, for cluster configuration data resiliency.
 
+Some Kubernetes cluster bootstrapping tools, such as kubeadm, by default, provision stacked etcd control plane nodes, where the data store runs alongside and shares resources with the other control plane components on the same control plane node.
+
+For data store isolation from the control plane components, the bootstrapping process can be configured for an external etcd topology, where the data store is provisioned on a dedicated separate host, thus reducing the chances of an etcd failure.
+
+etcd is based on the Raft Consensus Algorithm which allows a collection of machines to work as a coherent group that can survive the failures of some of its members.
 
 
 **Worker Node**
 A worker node provides a running environment for client applications.
+In Kubernetes the application containers are encapsulated in Pods, controlled by the cluster control plane agents running on the control plane node. Pods are scheduled on worker nodes, where they find required compute, memory and storage resources to run, and networking to talk to each other and the outside world. A Pod is the smallest scheduling work unit in Kubernetes. It is a logical collection of one or more containers scheduled together, and the collection can be started, stopped, or rescheduled as a single unit of work. 
+
+Also, in a multi-worker Kubernetes cluster, the network traffic between client users and the containerized applications deployed in Pods is handled directly by the worker nodes, and is not routed through the control plane node.
 
 A worker node has the following components:
 - Container Runtime
@@ -43,9 +51,21 @@ Although Kubernetes is described as a "container orchestration engine", it lacks
 **Node Agent – kubelet**
 The kubelet is an agent running on each node, control plane and workers, and it communicates with the control plane. It receives Pod definitions, primarily from the API Server, and interacts with the container runtime on the node to run containers associated with the Pod. It also monitors the health and resources of Pods running containers.
 
-The kubelet connects to container runtimes through a plugin based interface - the Container Runtime Interface (CRI). The CRI consists of protocol buffers, gRPC API, libraries, and additional specifications and tools. In order to connect to interchangeable container runtimes, kubelet uses a CRI shim, an application which provides a clear abstraction layer between kubelet and the container runtime.
+The kubelet connects to container runtimes through a plugin based interface - the **Container Runtime Interface (CRI)**. The CRI consists of protocol buffers, gRPC API, libraries, and additional specifications and tools. In order to connect to interchangeable container runtimes, kubelet uses a **CRI shim**, an application which provides a clear abstraction layer between kubelet and the container runtime.
 
 The CRI implements two services: ImageService and RuntimeService. The ImageService is responsible for all the image-related operations, while the RuntimeService is responsible for all the Pod and container-related operations.
+
+
+**CRI shims**
+Originally kubelet agent supported only a couple of container runtimes, first the Docker Engine followed by rkt, through a unique interface model integrated directly into kubelet source code. However, this approach was not intended to last forever. In time, Kubernetes started migrating towards a standardized approach to container runtime integration by introducing the CRI. Kubernetes adopted a decoupled and flexible method to integrate with various container runtimes without the need to recompile its source code. Any container runtime that implements the CRI could be used by Kubernetes to manage containers.
+
+**Shims are Container Runtime Interface (CRI) implementations**, interfaces or adapters, specific to each container runtime supported by Kubernetes. Below are some examples of CRI shims:
+
+**cri-containerd**
+cri-containerd allows containers to be directly created and managed with containerd at kubelet's request.
+
+**CRI-O**
+CRI-O enables the use of any Open Container Initiative (OCI) compatible runtime with Kubernetes, such as runC
 
 
 **Proxy kube-proxy**
