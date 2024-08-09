@@ -1,5 +1,9 @@
 Openstack is a cloud service which offers primarily IaaS to users. It is piece of software when installed on cluster of Physical Servers, offers the users to create, run and manage Virtual Machines(VM) on top of it along with support to attach the connected storage along with the networking services in a virtual format known as Infrastructure as a Service.
 
+It is an Iaas platform that controls large pool of compute storage and networking resource throughout the data center. All resources are managed through a dashboard that gives administrators control while empowering their users to provistion the rosources through web interface.
+
+It turns all those set of hypervisors, storage and network devices within a data center or across multiple data center into pools of resources. Those pools of resources can be managed from a single place and that place is Openstack.
+
 **Nova**
 Nova is OpenStack project that provides a way to provision. It supports creating virtual machines, baremetal servers (through the use of ironic), and has limited support for system containers. It runs as a set of daemons on top of existing Linux servers to provide that service.
 
