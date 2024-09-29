@@ -18,6 +18,14 @@ Displays the IP address of Minikube virtual machine
 **minikube ssh**
 Logs in to the Minikube virtual machine using SSH
 
+**eval $(minikube -p minikube docker-env)**
+Minikube runs its own docker daemon. To interact with docker environment, you will need to point your shell to Minikube's docker daemon.
+This command sets your terminal to use the docker environment inside the minikube VM.
+
+
+**eval $(minikube docker-env --unset)**
+This will restore your shell to use the Docker environment on your local machine instead of minikube VM.
+
 **minikube dashboard**
 **minikube dashboard --url**
 
@@ -40,6 +48,9 @@ kubectl authenticates with the API server on the control plane node and makes se
 
 **kubectl api-version**
 List all the API version supported by cluster.
+
+**kubectl api-resources**
+Complete list of resources.
 
 **kubectl explain**
 Provides detailed information about a specific Kubernetes resource, including its field and description
