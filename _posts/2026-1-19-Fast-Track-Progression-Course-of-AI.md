@@ -37,3 +37,24 @@ Look at each word in the sentence at the same time.
 
 <p style="font-size:18px;"><b>The Secret: Attention</b></p>
 The model attends to the most relevant words, no matter how far apart they are.
+
+**Attention in Action**
+The animal didn't cross the street because it was too tired.
+When the model reaches at the word "it", the attention mechanism tells it to pay the most attention to "animal".
+This is how the model "knows" what the pronoun refers to, building a context aware representation of every word.
+
+
+<p style="font-size:24px;"><b>Why Attention is Powerful</b></p>
+
+**More Memory**
+Every word in sentence sees every other word simultaneously, no matter how far apart they are.
+
+**Parallel Processing**
+Unlike RNNs that read word by word. Transformers process all the word at once, making the training incredibly fast.
+
+**Deep Understanding**
+The model builds mathematical map of how every word relates to every other word in the specific context.
+
+
+**The Transformer**
+An architecture built entirely on the mechanism of attention.
