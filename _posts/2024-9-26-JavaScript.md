@@ -16,3 +16,13 @@ Once the JavaScript is fetched, the JavaScript Engine begins parsing the code. t
 - **Tokenization**: The JavaScript engine breaks the code into small pieces, called tokens. These tokens are the smallest meaningful elements in the code (e.g. keywords like function, variable name, operators).
 - **Parsing**: The engine takes these tokens and builds an <b>Abstract Syntax Tree(AST)</b>. This is hierarchical structure that represents the code in a form the engine can process. For example, it identifies things like function declations, loops, conditionals, etc.
 
+**Step 3: Compilation(JIT)**
+JavaScript is not compiled ahead of time, but it is compiled just before execution. Most modern JavaScript engines use <b>Just-In-Time(JIT)</b> compilation. The steps involved are:
+- **Intermediate Representation (IR)**: The AST is translated into an intermediate code that the JavaScript engine can further optimize and execute. The representation is platform-independent.
+- **JIT Compilation**: The engine compiles this intermediate code into machine code (low-level code that your CPU can understand). This machine code can be executed directly by the system's hardware.
+
+Some engines optimize this process by compiling the code in stages. For instance, it may first compile the code using a fast, unoptimized compiler, and if a particular part of code is run repeatedly, it recompiles that section with more optimized version.
+
+**Step 3: Execution**
+Now that JavaScript code is compiled, the engine begins execution.
+- **Global Execution Context**: The engine first creates a <b>
