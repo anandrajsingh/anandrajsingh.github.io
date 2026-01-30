@@ -34,3 +34,21 @@ output = activation($\sum w_i x_i + b$)
 <b>Weights (w)</b>  Determine the strength and importance of each input.
 <b>Bias (b)</b>  An offset that allows the neuron to shift its decision boundary.
 <b>Activation</b>  A non-linear function that decides if the signal should fire.
+
+
+**Why we need Activation Functions**
+
+<b>The Linearity Problem</b>
+Layer 1: $y = W_1 x + b_1$
+Layer 2: $z = W_2 y + b_2$
+
+<b>Combined Equation</b>
+Combined:
+$$z = W_2(W_1 x + b_1) + b_2$$
+$$z = (W_2 W_1)x + (W_2 b_1 + b_2)$$   
+
+This simplifies to:
+$$z = W'x + b'$$
+where $ W' = W_2W_1 $ and $ b' = W_2b_1 + b_2 $.
+
+<b>Mathematical Collapse:</b> Stacking linear layers just results in another linear function. 100 layers are equivalent to just one.
