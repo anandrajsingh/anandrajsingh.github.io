@@ -52,3 +52,55 @@ $$z = W'x + b'$$
 where $ W' = W_2W_1 $ and $ b' = W_2b_1 + b_2 $.
 
 <b>Mathematical Collapse:</b> Stacking linear layers just results in another linear function. 100 layers are equivalent to just one.
+
+<b>The Non-linear solution</b>
+
+<b>Breaking Linearity:</b> Activation functions add "bends" to the math, preventing layers form collapsing into each other.
+
+<b>Enabling Depth:</b> This is the "secret sauce" that allows deep networks to learn complex, multi-layered represantations.
+
+<b>Universal Approximation:</b> Non-linearity allows networks to model any continuous function, no matter how complex.
+
+
+**The Activation Function Menu**
+
+<b>Sigmoid</b>
+Classic S-curve (0 to 1). Historically the default, ideal for probability outputs.
+
+<b>Tanh</b>
+Zero-centered (-1 to 1). Often provides faster convergence than sigmoid.
+
+<b>ReLU</b>
+The breakthrough: max(0,x). Simple, efficient and enabled deep networks.
+
+<b>Modern Variants</b>
+<b>GELU & Swish:</b> Smooth versions of ReLU used in state-of-art LLMs 
+
+
+**The Loss Fuction**
+Loss = A single number measuring how wrong we are.
+
+Lower loss = better predictions
+Training goal = minimize loss
+
+Mean Squared Error (MSE):
+L = (1/n) summation(prediction - target)2
+
+- Squares make all error positive
+- Big errors penalized more than small errors
+- Good for regression tasks
+
+Example:
+Predicted: $350,000
+Actual: $400,000
+Error: $50,000
+Squared: 2,500,000,000
+
+
+
+**Backpropogation: Assigning Blame**
+
+<b>The Chain of Responsibility</b>
+<b>The Question:</b> "The prediction was wrong. Which specific weights are responsible for this error?"
+<b>The Flow:</b> Error signal travel backward from the output layer through the hidden layers to the input.
+<b>Adjustment:</b> Each weight is adjusted proportionally to its contribution to the final mistake.
