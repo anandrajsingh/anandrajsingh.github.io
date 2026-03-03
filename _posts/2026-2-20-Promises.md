@@ -1,11 +1,8 @@
 A Promise in JavaScript is an object that represents the eventual completion (or failure) of an asynchronous operations and its resulting value. Promises are used to handle asynchronous operations more effectively than traditional callback funtions, providing a cleaner and more manageable way to deal with code that executes asynchronously, such as API calls, file I/O or timers
 
 ### Using a function that returns a promise 
-<<<<<<< HEAD
+
 ```
-=======
-```bash
->>>>>>> d97cff023267b1e17c58897eb972bf76300633bf
 function setTimeoutPromisified(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -16,7 +13,6 @@ function callback() {
 
 setTimeoutPromisified(3000).then(callback)
 
-<<<<<<< HEAD
 ```
 
 ### Promisified readfile
@@ -109,6 +105,4 @@ async function solve() {
 }
 
 solve();
-=======
->>>>>>> d97cff023267b1e17c58897eb972bf76300633bf
 ```
